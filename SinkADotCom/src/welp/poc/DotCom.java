@@ -17,7 +17,7 @@ public class DotCom {
             if(locationCells.isEmpty()){
                 result = "kill";
             }else{
-                result = "hit"
+                result = "hit";
             }
         }
         return result;
