@@ -1,6 +1,6 @@
 package welp.poc;
 
-public class Main {
+public class DotComGame {
 
     public static void main(String[] args){
         int numOfGuesses = 0;
