@@ -8,6 +8,17 @@ public class Main
     public static void main(String[] args) {
         System.out.println("Big Number Calculator");
 
+        BigNum bn1 = new BigNum("1234");
+        BigNum bn2 = new BigNum("5678");
+
+        Calculator calc = new Calculator();
+        BigNum result = calc.add(bn1, bn2);
+        System.out.format("(%s) + (%s) = %s", bn1.getValue(), bn2.getValue(), result.getValue());
+
+
+
+
+
         BigNum num1 = new BigNum("-567");
         BigNum num2 = new BigNum("567");
         BigNum num3 = new BigNum("0");

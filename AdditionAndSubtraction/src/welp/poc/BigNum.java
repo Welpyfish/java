@@ -98,4 +98,8 @@ public class BigNum {
 
         return result;
     }
+
+    public String toString() {
+        return getValue();
+    }
 }
