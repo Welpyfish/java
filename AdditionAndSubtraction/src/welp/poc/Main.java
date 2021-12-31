@@ -12,9 +12,9 @@ public class Main
         BigNum bn1 = new BigNum("-1234");
         BigNum bn2 = new BigNum("-5678");
 
-        for(int i=0; i<100; i++) {
-            Calculator calc = new Calculator();
-            calc.calculate(new BigNum(generateBigNumber(50)), generateOperator(), new BigNum(generateBigNumber(20)));
+        Calculator calc = new Calculator();
+        for(int i=0; i<6; i++) {
+            calc.calculate(new BigNum(generateBigNumber(20)), generateOperator(), new BigNum(generateBigNumber(20)));
             System.out.println(calc.formattedResult());
         }
     }
@@ -40,7 +40,16 @@ public class Main
     }
 
     private static Calculator.Operator generateOperator() {
-        return (int)Math.floor(Math.random() * 100 ) > 50 ? Calculator.Operator.SUBTRACTION : Calculator.Operator.ADDITION;
+        Calculator.Operator result;
+        int randomNum = (int)Math.floor(Math.random() * 3);
+        if(randomNum == 0){
+            result = Calculator.Operator.ADDITION;
+        } else if(randomNum == 1){
+            result = Calculator.Operator.SUBTRACTION;
+        } else{
+            result = Calculator.Operator.MULTIPLICATION;
+        }
+        return result;
     }
 }
 

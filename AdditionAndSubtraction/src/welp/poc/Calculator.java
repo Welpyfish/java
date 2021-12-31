@@ -5,7 +5,8 @@ import java.lang.StringBuilder;
 public class Calculator {
     public enum Operator {
         ADDITION,
-        SUBTRACTION
+        SUBTRACTION,
+        MULTIPLICATION
     }
     BigNum numA;
     BigNum numB;
@@ -35,6 +36,12 @@ public class Calculator {
                     }
                 } else {
                     result = add(num1, num2);
+                }
+                break;
+            case MULTIPLICATION:
+                result = multiply(num1, num2);
+                if(num1.numSign != num2.numSign) {
+                    result.switchSign();
                 }
                 break;
             default:
@@ -108,6 +115,30 @@ public class Calculator {
         return new BigNum(largerNum.numSign, sb.toString());
     }
 
+    public BigNum multiply(BigNum num1, BigNum num2) {
+        //throw new java.lang.UnsupportedOperationException("not implemented yet.");
+        BigNum result = new BigNum("","0");
+        for (int i = 0; i < num2.numString.length(); i++) {
+            StringBuilder sb = new StringBuilder();
+            int carry = 0;
+            int a2 = Character.getNumericValue(num2.numString.charAt(num2.numString.length() - 1 - i));
+            for (int j = 0; j < num1.numString.length() + 1; j++) {
+                int a1 = 0;
+                if (j < num1.numString.length()) {
+                    a1 = Character.getNumericValue(num1.numString.charAt(num1.numString.length() - 1 - j));
+                }
+                int digit = (a1 * a2 + carry) % 10;
+                carry = (int) ((a1 * a2 + carry) / 10);
+                sb.insert(0, String.valueOf(digit));
+            }
+            for(int k = 0; k<i; k++) {
+                sb.append("0");
+            }
+            result = add(result, new BigNum("", sb.toString()));
+        }
+        return result;
+    }
+
     private String getOperator() {
         String result = "";
         switch(currentOperation) {
@@ -117,6 +148,10 @@ public class Calculator {
             }
             case SUBTRACTION -> {
                 result = "-";
+                break;
+            }
+            case MULTIPLICATION -> {
+                result = "x";
                 break;
             }
         }
