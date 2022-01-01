@@ -8,14 +8,34 @@ public class Main
 {
     public static void main(String[] args) {
         System.out.println("Big Number Calculator");
+        java.util.Date dtStart=new java.util.Date();
+        Test3(100000, 100);
+        java.util.Date dtStop=new java.util.Date();
+        long diff = dtStop.getTime() - dtStart.getTime();
+        System.out.print("This calculation took " + String.valueOf(diff) + " ms");
+    }
 
-        BigNum bn1 = new BigNum("-1234");
-        BigNum bn2 = new BigNum("-5678");
-
+    private static void Test1(long count, int maxlen) {
         Calculator calc = new Calculator();
-        for(int i=0; i<6; i++) {
-            calc.calculate(new BigNum(generateBigNumber(20)), generateOperator(), new BigNum(generateBigNumber(20)));
-            System.out.println(calc.formattedResult());
+        for(long i=0; i<count; i++) {
+            calc.calculate(new BigNum(generateBigNumber(maxlen)), Calculator.Operator.ADDITION, new BigNum(generateBigNumber(maxlen)));
+            //System.out.println(String.valueOf(i+1) + "." + calc.formattedResult());
+        }
+    }
+
+    private static void Test2(long count, int maxlen) {
+        Calculator calc = new Calculator();
+        for(long i=0; i<count; i++) {
+            calc.calculate(new BigNum(generateBigNumber(maxlen)), Calculator.Operator.SUBTRACTION, new BigNum(generateBigNumber(maxlen)));
+            //System.out.println(String.valueOf(i+1) + "." + calc.formattedResult());
+        }
+    }
+
+    private static void Test3(long count, int maxlen) {
+        Calculator calc = new Calculator();
+        for(long i=0; i<count; i++) {
+            calc.calculate(new BigNum(generateBigNumber(maxlen)), Calculator.Operator.MULTIPLICATION, new BigNum(generateBigNumber(maxlen)));
+            //System.out.println(String.valueOf(i+1) + "." + calc.formattedResult());
         }
     }
 
